@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
+import 'package:my_portfolio/core/services/service_locator.dart';
 import 'package:my_portfolio/core/storage/shared_preferences/cache_helper.dart';
 import 'package:my_portfolio/generated/l10n.dart';
 
@@ -21,12 +22,12 @@ class LocaleCubit extends Cubit<String> {
 
   void toggleLocale() async {
     final newLocale = state == 'en' ? 'ar' : 'en';
-    await CacheHelper().saveData(key: 'locale', value: newLocale);
+    await sl<CacheHelper>().saveData(key: 'locale', value: newLocale);
     emit(newLocale);
   }
 
   void loadSavedLocale() async {
-    final savedLocale = await CacheHelper().getData(key: 'locale') ?? 'en';
+    final savedLocale = await sl<CacheHelper>().getData(key: 'locale') ?? 'en';
     emit(savedLocale);
   }
 }

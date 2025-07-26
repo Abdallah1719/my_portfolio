@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:my_portfolio/core/storage/shared_preferences/cache_helper.dart';
+import 'package:my_portfolio/core/theme/cubit/theme_cubit.dart';
 import 'package:my_portfolio/l10n/cubit/local_cubit.dart';
 
 final sl = GetIt.instance;
@@ -8,4 +9,6 @@ void setupServiceLocator() {
   sl.registerSingleton<CacheHelper>(CacheHelper());
   // locale cubit
   sl.registerLazySingleton<LocaleCubit>(() => LocaleCubit());
+  // theme cubit
+  sl.registerLazySingleton<ThemeCubit>(() => ThemeCubit());
 }

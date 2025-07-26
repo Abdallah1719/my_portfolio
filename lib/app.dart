@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_portfolio/core/services/service_locator.dart';
+import 'package:my_portfolio/core/theme/cubit/theme_cubit.dart';
 import 'package:my_portfolio/features/home/presentation/screens/home_screen.dart';
 import 'package:my_portfolio/generated/l10n.dart';
 import 'package:my_portfolio/l10n/cubit/local_cubit.dart';
@@ -13,16 +14,22 @@ class App extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => sl<LocaleCubit>()..loadSavedLocale()),
+        BlocProvider(create: (context) => sl<ThemeCubit>()..loadSavedTheme()),
       ],
       child: BlocBuilder<LocaleCubit, String>(
         builder: (context, locale) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            localizationsDelegates: LocaleCubit.localizationsDelegates,
-            supportedLocales: S.delegate.supportedLocales,
-            locale: Locale(locale),
-            title: 'Flutter Demo',
-            home: HomeScreen(),
+          return BlocBuilder<ThemeCubit, ThemeState>(
+            builder: (context, state) {
+              return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                localizationsDelegates: LocaleCubit.localizationsDelegates,
+                supportedLocales: S.delegate.supportedLocales,
+                locale: Locale(locale),
+                theme: context.watch<ThemeCubit>().currentTheme(),
+                title: 'Flutter Demo',
+                home: HomeScreen(),
+              );
+            },
           );
         },
       ),
