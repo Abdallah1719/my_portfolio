@@ -1,25 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_portfolio/features/home/presentation/screens/home_screen.dart';
 import 'package:my_portfolio/generated/l10n.dart';
+import 'package:my_portfolio/l10n/cubit/local_cubit.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      locale: Locale('en'),
-      localizationsDelegates: [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => LocaleCubit()..loadSavedLocale()),
       ],
-      supportedLocales: S.delegate.supportedLocales,
-      title: 'Flutter Demo',
-      home: HomeScreen(),
+      child: BlocBuilder<LocaleCubit, String>(
+        builder: (context, locale) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            localizationsDelegates: LocaleCubit.localizationsDelegates,
+            supportedLocales: S.delegate.supportedLocales,
+            locale: Locale(locale),
+            title: 'Flutter Demo',
+            home: HomeScreen(),
+          );
+        },
+      ),
     );
   }
 }

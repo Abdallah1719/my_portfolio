@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/app.dart';
+import 'package:my_portfolio/core/storage/shared_preferences/cache_helper.dart';
 
-
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await CacheHelper().init();
   runApp(const App());
 }
