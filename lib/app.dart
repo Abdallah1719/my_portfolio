@@ -27,7 +27,7 @@ class App extends StatelessWidget {
                 locale: Locale(locale),
                 theme: context.watch<ThemeCubit>().currentTheme(),
                 title: 'Flutter Demo',
-                home: HomeScreen(),
+                home: PortfolioScreen(),
               );
             },
           );

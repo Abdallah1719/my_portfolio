@@ -1,14 +1,490 @@
-import 'package:flutter/material.dart';
-import 'package:my_portfolio/generated/l10n.dart';
+// // // portfolio_screen.dart
+// // import 'package:flutter/material.dart';
+// // import 'package:my_portfolio/features/home/presentation/widgets/contact_card.dart';
+// // import 'package:my_portfolio/features/home/presentation/widgets/custom_app_bar.dart';
+// // import 'package:my_portfolio/features/home/presentation/widgets/profile_card.dart';
+// // import 'package:my_portfolio/features/home/presentation/widgets/project_card.dart';
+// // import 'package:my_portfolio/features/home/presentation/widgets/responsive_utils.dart';
+// // import 'package:my_portfolio/features/home/presentation/widgets/summary_card.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+// // class PortfolioScreen extends StatefulWidget {
+// //   const PortfolioScreen({super.key});
+
+// //   @override
+// //   State<PortfolioScreen> createState() => _PortfolioScreenState();
+// // }
+
+// // class _PortfolioScreenState extends State<PortfolioScreen> {
+// //   bool isDarkMode = false;
+// //   bool isArabic = true;
+
+// //   void _toggleTheme() {
+// //     setState(() {
+// //       isDarkMode = !isDarkMode;
+// //     });
+// //   }
+
+// //   void _toggleLanguage() {
+// //     setState(() {
+// //       isArabic = !isArabic;
+// //     });
+// //   }
+
+// //   @override
+// //   Widget build(BuildContext context) {
+// //     return MaterialApp(
+// //       title: 'My Portfolio',
+// //       theme: isDarkMode ? _darkTheme() : _lightTheme(),
+// //       debugShowCheckedModeBanner: false,
+// //       home: Scaffold(
+// //         appBar: CustomAppBar(
+// //           onThemeToggle: _toggleTheme,
+// //           onLanguageToggle: _toggleLanguage,
+// //         ),
+// //         drawer:
+// //             ResponsiveUtils.isMobile(context) ||
+// //                 ResponsiveUtils.isTablet(context)
+// //             ? const ProfileDrawer()
+// //             : null,
+// //         body: _buildBody(context),
+// //       ),
+// //     );
+// //   }
+
+// //   Widget _buildBody(BuildContext context) {
+// //     if (ResponsiveUtils.isDesktop(context)) {
+// //       return _buildDesktopLayout(context);
+// //     } else {
+// //       return _buildMobileTabletLayout(context);
+// //     }
+// //   }
+
+// //   Widget _buildDesktopLayout(BuildContext context) {
+// //     return SingleChildScrollView(
+// //       padding: ResponsiveUtils.getPagePadding(context),
+// //       child: Row(
+// //         crossAxisAlignment: CrossAxisAlignment.start,
+// //         children: [
+// //           // Left Profile Card
+// //           SizedBox(
+// //             width: ResponsiveUtils.getProfileCardWidth(context),
+// //             child: const ProfileCard(),
+// //           ),
+// //           const SizedBox(width: 24),
+
+// //           // Right Content
+// //           Expanded(
+// //             child: Column(
+// //               crossAxisAlignment: CrossAxisAlignment.start,
+// //               children: [
+// //                 // Summary Card
+// //                 const SummaryCard(),
+// //                 const SizedBox(height: 32),
+
+// //                 // Projects Section
+// //                 const ProjectsSection(),
+// //                 const SizedBox(height: 32),
+
+// //                 // Contact Card for Desktop
+// //                 const ContactCard(),
+// //               ],
+// //             ),
+// //           ),
+// //         ],
+// //       ),
+// //     );
+// //   }
+
+// //   Widget _buildMobileTabletLayout(BuildContext context) {
+// //     return SingleChildScrollView(
+// //       padding: ResponsiveUtils.getPagePadding(context),
+// //       child: Column(
+// //         crossAxisAlignment: CrossAxisAlignment.start,
+// //         children: [
+// //           // Summary Card
+// //           const SummaryCard(),
+// //           const SizedBox(height: 24),
+
+// //           // Projects Section
+// //           const ProjectsSection(),
+// //           const SizedBox(height: 32),
+
+// //           // Contact Card (Full Width at Bottom)
+// //           const ContactCard(),
+// //         ],
+// //       ),
+// //     );
+// //   }
+
+// //   ThemeData _lightTheme() {
+// //     return ThemeData(
+// //       useMaterial3: true,
+// //       colorScheme: ColorScheme.fromSeed(
+// //         seedColor: Colors.blue,
+// //         brightness: Brightness.light,
+// //       ),
+// //       fontFamily: 'Cairo', // You can change this to your preferred Arabic font
+// //     );
+// //   }
+
+// //   ThemeData _darkTheme() {
+// //     return ThemeData(
+// //       useMaterial3: true,
+// //       colorScheme: ColorScheme.fromSeed(
+// //         seedColor: Colors.blue,
+// //         brightness: Brightness.dark,
+// //       ),
+// //       fontFamily: 'Cairo', // You can change this to your preferred Arabic font
+// //     );
+// //   }
+// // }
+// // portfolio_screen.dart
+// import 'package:flutter/material.dart';
+// import 'package:my_portfolio/features/home/presentation/widgets/contact_card.dart';
+// import 'package:my_portfolio/features/home/presentation/widgets/custom_app_bar.dart';
+// import 'package:my_portfolio/features/home/presentation/widgets/profile_card.dart';
+// import 'package:my_portfolio/features/home/presentation/widgets/project_card.dart';
+// import 'package:my_portfolio/features/home/presentation/widgets/responsive_utils.dart';
+// import 'package:my_portfolio/features/home/presentation/widgets/skills_card.dart';
+// import 'package:my_portfolio/features/home/presentation/widgets/summary_card.dart';
+
+// class PortfolioScreen extends StatefulWidget {
+//   const PortfolioScreen({super.key});
+
+//   @override
+//   State<PortfolioScreen> createState() => _PortfolioScreenState();
+// }
+
+// class _PortfolioScreenState extends State<PortfolioScreen> {
+//   bool isDarkMode = false;
+//   bool isArabic = true;
+
+//   void _toggleTheme() {
+//     setState(() {
+//       isDarkMode = !isDarkMode;
+//     });
+//   }
+
+//   void _toggleLanguage() {
+//     setState(() {
+//       isArabic = !isArabic;
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'My Portfolio',
+//       theme: isDarkMode ? _darkTheme() : _lightTheme(),
+//       debugShowCheckedModeBanner: false,
+//       home: Scaffold(
+//         appBar: CustomAppBar(
+//           onThemeToggle: _toggleTheme,
+//           onLanguageToggle: _toggleLanguage,
+//         ),
+//         drawer:
+//             ResponsiveUtils.isMobile(context) ||
+//                 ResponsiveUtils.isTablet(context)
+//             ? const ProfileDrawer()
+//             : null,
+//         body: _buildBody(context),
+//       ),
+//     );
+//   }
+
+//   Widget _buildBody(BuildContext context) {
+//     if (ResponsiveUtils.isDesktop(context)) {
+//       return _buildDesktopLayout(context);
+//     } else {
+//       return _buildMobileTabletLayout(context);
+//     }
+//   }
+
+//   Widget _buildDesktopLayout(BuildContext context) {
+//     return SingleChildScrollView(
+//       padding: ResponsiveUtils.getPagePadding(context),
+//       child: Row(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           // Left Profile Card
+//           SizedBox(
+//             width: ResponsiveUtils.getProfileCardWidth(context),
+//             child: const ProfileCard(),
+//           ),
+//           const SizedBox(width: 24),
+
+//           // Right Content
+//           Expanded(
+//             child: Column(
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               children: [
+//                 // Summary Card
+//                 const SummaryCard(),
+//                 const SizedBox(height: 32),
+
+//                 // Projects Section
+//                 const ProjectsSection(),
+//                 const SizedBox(height: 32),
+
+//                 // Skills Card
+//                 const SkillsCard(),
+//                 const SizedBox(height: 32),
+
+//                 // Contact Card for Desktop
+//                 const ContactCard(),
+//               ],
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+
+//   Widget _buildMobileTabletLayout(BuildContext context) {
+//     return SingleChildScrollView(
+//       padding: ResponsiveUtils.getPagePadding(context),
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           // Summary Card
+//           const SummaryCard(),
+//           const SizedBox(height: 24),
+
+//           // Projects Section
+//           const ProjectsSection(),
+//           const SizedBox(height: 32),
+
+//           // Skills Card
+//           const SkillsCard(),
+//           const SizedBox(height: 32),
+
+//           // Contact Card (Full Width at Bottom)
+//           const ContactCard(),
+//         ],
+//       ),
+//     );
+//   }
+
+//   ThemeData _lightTheme() {
+//     return ThemeData(
+//       useMaterial3: true,
+//       colorScheme: ColorScheme.fromSeed(
+//         seedColor: Colors.blue,
+//         brightness: Brightness.light,
+//       ),
+//       fontFamily: 'Cairo', // You can change this to your preferred Arabic font
+//     );
+//   }
+
+//   ThemeData _darkTheme() {
+//     return ThemeData(
+//       useMaterial3: true,
+//       colorScheme: ColorScheme.fromSeed(
+//         seedColor: Colors.blue,
+//         brightness: Brightness.dark,
+//       ),
+//       fontFamily: 'Cairo', // You can change this to your preferred Arabic font
+//     );
+//   }
+// }
+
+// portfolio_screen.dart
+import 'package:flutter/material.dart';
+import 'package:my_portfolio/features/home/presentation/widgets/contact_card.dart';
+import 'package:my_portfolio/features/home/presentation/widgets/custom_app_bar.dart';
+import 'package:my_portfolio/features/home/presentation/widgets/profile_card.dart';
+import 'package:my_portfolio/features/home/presentation/widgets/project_card.dart';
+import 'package:my_portfolio/features/home/presentation/widgets/responsive_utils.dart';
+import 'package:my_portfolio/features/home/presentation/widgets/skills_card.dart';
+import 'package:my_portfolio/features/home/presentation/widgets/summary_card.dart';
+
+class PortfolioScreen extends StatefulWidget {
+  const PortfolioScreen({super.key});
+
+  @override
+  State<PortfolioScreen> createState() => _PortfolioScreenState();
+}
+
+class _PortfolioScreenState extends State<PortfolioScreen> {
+  bool isDarkMode = false;
+  bool isArabic = true;
+
+  void _toggleTheme() {
+    setState(() {
+      isDarkMode = !isDarkMode;
+    });
+  }
+
+  void _toggleLanguage() {
+    setState(() {
+      isArabic = !isArabic;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(S.of(context).appTitle)),
-      body: Center(child: Text(S.of(context).welcomeMessage)),
+    return MaterialApp(
+      title: 'My Portfolio',
+      theme: isDarkMode ? _darkTheme() : _lightTheme(),
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: CustomAppBar(
+          onThemeToggle: _toggleTheme,
+          onLanguageToggle: _toggleLanguage,
+          onProfileTap:
+              ResponsiveUtils.isMobile(context) ||
+                  ResponsiveUtils.isTablet(context)
+              ? () => _showProfileBottomSheet(context)
+              : null,
+        ),
+        drawer:
+            ResponsiveUtils.isMobile(context) ||
+                ResponsiveUtils.isTablet(context)
+            ? null // Remove drawer since we're using bottom sheet
+            : null,
+        body: _buildBody(context),
+      ),
+    );
+  }
+
+  Widget _buildBody(BuildContext context) {
+    if (ResponsiveUtils.isDesktop(context)) {
+      return _buildDesktopLayout(context);
+    } else {
+      return _buildMobileTabletLayout(context);
+    }
+  }
+
+  void _showProfileBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => DraggableScrollableSheet(
+        initialChildSize: 0.9,
+        minChildSize: 0.5,
+        maxChildSize: 0.95,
+        builder: (context, scrollController) => Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.surface,
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
+          child: Column(
+            children: [
+              // Handle bar
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 8),
+                height: 4,
+                width: 40,
+                decoration: BoxDecoration(
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.onSurface.withOpacity(0.3),
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              // Profile content
+              Expanded(
+                child: SingleChildScrollView(
+                  controller: scrollController,
+                  padding: const EdgeInsets.all(16),
+                  child: const ProfileCard(),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDesktopLayout(BuildContext context) {
+    return SingleChildScrollView(
+      padding: ResponsiveUtils.getPagePadding(context),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Left Profile Card
+          SizedBox(
+            width: ResponsiveUtils.getProfileCardWidth(context),
+            child: const ProfileCard(),
+          ),
+          const SizedBox(width: 24),
+
+          // Right Content
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Summary Card
+                const SummaryCard(),
+                const SizedBox(height: 32),
+
+                // Projects Section
+                const ProjectsSection(),
+                const SizedBox(height: 32),
+
+                // Skills Card
+                const SkillsCard(),
+                const SizedBox(height: 32),
+
+                // Contact Card for Desktop
+                const ContactCard(),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMobileTabletLayout(BuildContext context) {
+    return SingleChildScrollView(
+      padding: ResponsiveUtils.getPagePadding(context),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Summary Card
+          const SummaryCard(),
+          const SizedBox(height: 24),
+
+          // Projects Section
+          const ProjectsSection(),
+          const SizedBox(height: 32),
+
+          // Skills Card
+          const SkillsCard(),
+          const SizedBox(height: 32),
+
+          // Contact Card (Full Width at Bottom)
+          const ContactCard(),
+        ],
+      ),
+    );
+  }
+
+  ThemeData _lightTheme() {
+    return ThemeData(
+      useMaterial3: true,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: Colors.blue,
+        brightness: Brightness.light,
+      ),
+      fontFamily: 'Cairo', // You can change this to your preferred Arabic font
+    );
+  }
+
+  ThemeData _darkTheme() {
+    return ThemeData(
+      useMaterial3: true,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: Colors.blue,
+        brightness: Brightness.dark,
+      ),
+      fontFamily: 'Cairo', // You can change this to your preferred Arabic font
     );
   }
 }
