@@ -11,11 +11,11 @@ class PortfolioModel {
   final String profilePicture;
   final String summaryImage;
   final String cvLink;
-  final List<SocialLink> socialLinks;
+  final List<SocialLinksItem> socialLinks;
   final List<String> skills;
   final List<String> extraSkills;
   final List<Language> languages;
-  final List<WorkItem> workItems;
+  final List<WorkItemModel> workItems;
 
   PortfolioModel({
     required this.name,
@@ -51,7 +51,7 @@ class PortfolioModel {
       cvLink: json['cvLink'] ?? '',
       socialLinks:
           (json['socialLinks'] as List<dynamic>?)
-              ?.map((e) => SocialLink.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => SocialLinksItem.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
       skills:
@@ -71,7 +71,7 @@ class PortfolioModel {
           [],
       workItems:
           (json['workItems'] as List<dynamic>?)
-              ?.map((e) => WorkItem.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => WorkItemModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
     );
@@ -99,15 +99,15 @@ class PortfolioModel {
   }
 }
 
-class SocialLink {
+class SocialLinksItem {
   final String platform;
   final String url;
   final String icon;
 
-  SocialLink({required this.platform, required this.url, required this.icon});
+  SocialLinksItem({required this.platform, required this.url, required this.icon});
 
-  factory SocialLink.fromJson(Map<String, dynamic> json) {
-    return SocialLink(
+  factory SocialLinksItem.fromJson(Map<String, dynamic> json) {
+    return SocialLinksItem(
       platform: json['platform'] ?? '',
       url: json['url'] ?? '',
       icon: json['icon'] ?? '',
@@ -137,7 +137,7 @@ class Language {
   }
 }
 
-class WorkItem {
+class WorkItemModel {
   final String imagePath;
   final String title;
   final String description;
@@ -145,7 +145,7 @@ class WorkItem {
   final String iosLink;
   final String previewPhoto;
 
-  WorkItem({
+  WorkItemModel({
     required this.imagePath,
     required this.title,
     required this.description,
@@ -154,8 +154,8 @@ class WorkItem {
     required this.previewPhoto,
   });
 
-  factory WorkItem.fromJson(Map<String, dynamic> json) {
-    return WorkItem(
+  factory WorkItemModel.fromJson(Map<String, dynamic> json) {
+    return WorkItemModel(
       imagePath: json['imagePath'] ?? '',
       title: json['title'] ?? '',
       description: json['description'] ?? '',
