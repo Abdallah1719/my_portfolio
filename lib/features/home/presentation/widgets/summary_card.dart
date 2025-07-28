@@ -1,4 +1,4 @@
-// // summary_card.dart
+// // summary_card.dart - Fixed Version
 // import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:cached_network_image/cached_network_image.dart';
@@ -8,6 +8,7 @@
 // class SummaryCard extends StatelessWidget {
 //   const SummaryCard({super.key});
 
+//   //  @override
 //   @override
 //   Widget build(BuildContext context) {
 //     return Card(
@@ -17,25 +18,39 @@
 //         padding: const EdgeInsets.all(24),
 //         child: BlocBuilder<PortfolioCubit, PortfolioState>(
 //           builder: (context, state) {
-//             if (state is PortfolioAllDataLoaded) {
-//               return _buildSummaryContent(
-//                 context,
-//                 state.personalInfo.summaryImage,
-//                 state.personalInfo.summary,
-//               );
-//             } else if (state is PortfolioPersonalInfoLoaded) {
-//               return _buildSummaryContent(
-//                 context,
-//                 state.personalInfo.summaryImage,
-//                 state.personalInfo.summary,
-//               );
-//             } else if (state is PortfolioPersonalInfoLoading) {
+//             // Handle Loading States
+//             if (state is PortfolioLoading ||
+//                 state is PortfolioPersonalInfoLoading) {
 //               return _buildLoadingContent(context);
-//             } else if (state is PortfolioPersonalInfoError) {
-//               return _buildErrorContent(context, state.message);
-//             } else {
-//               return _buildDefaultContent(context);
 //             }
+
+//             // Handle Error States
+//             if (state is PortfolioError) {
+//               return _buildErrorContent(context, state.message);
+//             }
+//             if (state is PortfolioPersonalInfoError) {
+//               return _buildErrorContent(context, state.message);
+//             }
+
+//             // Handle Success States - Extract data
+//             String summaryImage = '';
+//             String summary = '';
+
+//             if (state is PortfolioAllDataLoaded) {
+//               summaryImage = state.personalInfo.summaryImage ?? '';
+//               summary = state.personalInfo.summary ?? '';
+//             } else if (state is PortfolioPersonalInfoLoaded) {
+//               summaryImage = state.personalInfo.summaryImage ?? '';
+//               summary = state.personalInfo.summary ?? '';
+//             }
+
+//             // If we have data, show it
+//             if (summaryImage.isNotEmpty || summary.isNotEmpty) {
+//               return _buildSummaryContent(context, summaryImage, summary);
+//             }
+
+//             // Default fallback
+//             return _buildDefaultContent(context);
 //           },
 //         ),
 //       ),
@@ -207,7 +222,7 @@
 //         // Retry Button
 //         ElevatedButton(
 //           onPressed: () {
-//             context.read<PortfolioCubit>().getPersonalInfo();
+//             context.read<PortfolioCubit>().loadAllPortfolioData();
 //           },
 //           child: const Text('إعادة المحاولة'),
 //         ),
@@ -263,7 +278,7 @@
 //     return 'مطور تطبيقات Flutter مع خبرة أكثر من 3 سنوات في تطوير التطبيقات المحمولة. أحب إنشاء تطبيقات جميلة وسهلة الاستخدام تحل مشاكل المستخدمين الحقيقية. لدي خبرة واسعة في العمل مع الـ State Management، APIs، والـ UI/UX Design. أسعى دائماً لتعلم التقنيات الجديدة ومشاركة المعرفة مع المجتمع.';
 //   }
 // }
-// summary_card.dart - Fixed Version
+// summary_card.dart - Updated Version with Name and Job Title
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -273,7 +288,6 @@ import 'package:my_portfolio/features/home/presentation/controller/cubit/portfol
 class SummaryCard extends StatelessWidget {
   const SummaryCard({super.key});
 
-  //  @override
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -284,11 +298,11 @@ class SummaryCard extends StatelessWidget {
         child: BlocBuilder<PortfolioCubit, PortfolioState>(
           builder: (context, state) {
             // Handle Loading States
-            if (state is PortfolioLoading || 
+            if (state is PortfolioLoading ||
                 state is PortfolioPersonalInfoLoading) {
               return _buildLoadingContent(context);
             }
-            
+
             // Handle Error States
             if (state is PortfolioError) {
               return _buildErrorContent(context, state.message);
@@ -296,24 +310,39 @@ class SummaryCard extends StatelessWidget {
             if (state is PortfolioPersonalInfoError) {
               return _buildErrorContent(context, state.message);
             }
-            
+
             // Handle Success States - Extract data
             String summaryImage = '';
             String summary = '';
-            
+            String name = '';
+            String jobTitle = '';
+
             if (state is PortfolioAllDataLoaded) {
               summaryImage = state.personalInfo.summaryImage ?? '';
               summary = state.personalInfo.summary ?? '';
+              name = state.personalInfo.name ?? '';
+              jobTitle = state.personalInfo.jobTitle ?? '';
             } else if (state is PortfolioPersonalInfoLoaded) {
               summaryImage = state.personalInfo.summaryImage ?? '';
               summary = state.personalInfo.summary ?? '';
+              name = state.personalInfo.name ?? '';
+              jobTitle = state.personalInfo.jobTitle ?? '';
             }
-            
+
             // If we have data, show it
-            if (summaryImage.isNotEmpty || summary.isNotEmpty) {
-              return _buildSummaryContent(context, summaryImage, summary);
+            if (summaryImage.isNotEmpty ||
+                summary.isNotEmpty ||
+                name.isNotEmpty ||
+                jobTitle.isNotEmpty) {
+              return _buildSummaryContent(
+                context,
+                summaryImage,
+                summary,
+                name,
+                jobTitle,
+              );
             }
-            
+
             // Default fallback
             return _buildDefaultContent(context);
           },
@@ -326,6 +355,8 @@ class SummaryCard extends StatelessWidget {
     BuildContext context,
     String summaryImage,
     String summary,
+    String name,
+    String jobTitle,
   ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -334,24 +365,49 @@ class SummaryCard extends StatelessWidget {
         _buildSummaryImage(context, summaryImage),
         const SizedBox(height: 20),
 
-        // Summary Title
-        Text(
-          'نبذة عني',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Theme.of(context).colorScheme.primary,
-          ),
-        ),
+        // Name and Job Title
+        _buildNameAndJobTitle(context, name, jobTitle),
         const SizedBox(height: 16),
 
         // Summary Text
         Text(
-          summary.isNotEmpty ? summary : _getDefaultSummary(),
+          summary.isNotEmpty ? summary : _getDefaultSummary(name, jobTitle),
           style: TextStyle(
             fontSize: 16,
             height: 1.6,
             color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildNameAndJobTitle(
+    BuildContext context,
+    String name,
+    String jobTitle,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Name
+        Text(
+          name.isNotEmpty ? name : 'اسم المطور',
+          style: TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+        ),
+        const SizedBox(height: 8),
+
+        // Job Title
+        Text(
+          jobTitle.isNotEmpty ? jobTitle : 'مطور تطبيقات Flutter',
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+            color: Theme.of(context).colorScheme.secondary,
           ),
         ),
       ],
@@ -412,12 +468,23 @@ class SummaryCard extends StatelessWidget {
         ),
         const SizedBox(height: 20),
 
-        // Loading Title Placeholder
+        // Loading Name Placeholder
         Container(
-          height: 28,
-          width: 120,
+          height: 32,
+          width: 180,
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(4),
+          ),
+        ),
+        const SizedBox(height: 8),
+
+        // Loading Job Title Placeholder
+        Container(
+          height: 24,
+          width: 140,
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
             borderRadius: BorderRadius.circular(4),
           ),
         ),
@@ -515,20 +582,13 @@ class SummaryCard extends StatelessWidget {
         ),
         const SizedBox(height: 20),
 
-        // Default Title
-        Text(
-          'نبذة عني',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Theme.of(context).colorScheme.primary,
-          ),
-        ),
+        // Default Name and Job Title
+        _buildNameAndJobTitle(context, '', ''),
         const SizedBox(height: 16),
 
         // Default Summary Text
         Text(
-          _getDefaultSummary(),
+          _getDefaultSummary('', ''),
           style: TextStyle(
             fontSize: 16,
             height: 1.6,
@@ -539,7 +599,12 @@ class SummaryCard extends StatelessWidget {
     );
   }
 
-  String _getDefaultSummary() {
-    return 'مطور تطبيقات Flutter مع خبرة أكثر من 3 سنوات في تطوير التطبيقات المحمولة. أحب إنشاء تطبيقات جميلة وسهلة الاستخدام تحل مشاكل المستخدمين الحقيقية. لدي خبرة واسعة في العمل مع الـ State Management، APIs، والـ UI/UX Design. أسعى دائماً لتعلم التقنيات الجديدة ومشاركة المعرفة مع المجتمع.';
+  String _getDefaultSummary(String name, String jobTitle) {
+    String displayName = name.isNotEmpty ? name : 'المطور';
+    String displayJobTitle = jobTitle.isNotEmpty
+        ? jobTitle
+        : 'مطور تطبيقات Flutter';
+
+    return 'أنا $displayName، $displayJobTitle مع خبرة أكثر من 3 سنوات في تطوير التطبيقات المحمولة. أحب إنشاء تطبيقات جميلة وسهلة الاستخدام تحل مشاكل المستخدمين الحقيقية. لدي خبرة واسعة في العمل مع الـ State Management، APIs، والـ UI/UX Design. أسعى دائماً لتعلم التقنيات الجديدة ومشاركة المعرفة مع المجتمع.';
   }
 }
