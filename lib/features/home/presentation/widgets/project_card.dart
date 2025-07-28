@@ -1,6 +1,7 @@
 // project_card.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_portfolio/generated/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/utils/responsive_utils.dart';
 import 'package:my_portfolio/features/home/data/models/portfolio_model.dart';
@@ -20,7 +21,7 @@ class ProjectsSection extends StatelessWidget {
       children: [
         Center(
           child: Text(
-            'مشاريعي',
+            S.of(context).my_work,
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.bold,
@@ -269,7 +270,7 @@ class ProjectCard extends StatelessWidget {
                           },
                           icon: const Icon(Icons.photo),
                           color: Colors.purple,
-                          tooltip: 'معاينة الصورة',
+                          tooltip: S.of(context).previewPictures,
                         ),
 
                       // General View Project Link
@@ -279,7 +280,7 @@ class ProjectCard extends StatelessWidget {
                         },
                         icon: const Icon(Icons.visibility),
                         color: Theme.of(context).colorScheme.primary,
-                        tooltip: 'عرض المشروع',
+                        tooltip: S.of(context).previewProject,
                       ),
                     ],
                   ),
@@ -389,8 +390,8 @@ class ProjectCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                const Text(
-                  'الوصف:',
+                Text(
+                  S.of(context).descriptionProject,
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                 ),
                 const SizedBox(height: 8),
@@ -402,8 +403,8 @@ class ProjectCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 // Links Section
-                const Text(
-                  'الروابط:',
+                Text(
+                  S.of(context).links,
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                 ),
                 const SizedBox(height: 8),
@@ -425,7 +426,7 @@ class ProjectCard extends StatelessWidget {
                   ListTile(
                     dense: true,
                     leading: const Icon(Icons.photo, color: Colors.purple),
-                    title: const Text('معاينة الصورة'),
+                    title: Text(S.of(context).previewPictures),
                     onTap: () {
                       Navigator.of(context).pop();
                       _showImagePreview(context, workItem.previewPhoto);
@@ -437,7 +438,7 @@ class ProjectCard extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('إغلاق'),
+              child: Text(S.of(context).close),
             ),
           ],
         );

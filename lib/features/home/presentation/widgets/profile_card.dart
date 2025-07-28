@@ -1,6 +1,7 @@
 // profile_card.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_portfolio/generated/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:my_portfolio/features/home/data/models/portfolio_model.dart';
 import 'package:my_portfolio/features/home/presentation/controller/cubit/portfolio_cubit.dart';
@@ -18,8 +19,6 @@ class ProfileCard extends StatelessWidget {
         padding: const EdgeInsets.all(24),
         child: BlocBuilder<PortfolioCubit, PortfolioState>(
           builder: (context, state) {
-            print('ProfileCard state: ${state.runtimeType}');
-
             if (state is PortfolioLoading) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is PortfolioError) {
@@ -47,7 +46,7 @@ class ProfileCard extends StatelessWidget {
                 ),
               );
             } else if (state is PortfolioAllDataLoaded) {
-              return _buildProfileContent(state);
+              return _buildProfileContent(context, state);
             }
 
             // Default loading state
@@ -58,7 +57,10 @@ class ProfileCard extends StatelessWidget {
     );
   }
 
-  Widget _buildProfileContent(PortfolioAllDataLoaded state) {
+  Widget _buildProfileContent(
+    BuildContext context,
+    PortfolioAllDataLoaded state,
+  ) {
     final personalInfo = state.personalInfo;
 
     return Column(
@@ -84,7 +86,7 @@ class ProfileCard extends StatelessWidget {
 
         // Name
         Text(
-          personalInfo.name.isNotEmpty ? personalInfo.name : 'اسم المطور',
+          personalInfo.name.isNotEmpty ? personalInfo.name : 'Abdallah Tolba ',
           style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8),
@@ -93,7 +95,7 @@ class ProfileCard extends StatelessWidget {
         Text(
           personalInfo.jobTitle.isNotEmpty
               ? personalInfo.jobTitle
-              : 'مطور تطبيقات',
+              : 'Flutter Developer',
           style: TextStyle(
             fontSize: 16,
             // color: Theme.of(context).colorScheme.secondary,
@@ -113,12 +115,11 @@ class ProfileCard extends StatelessWidget {
         SkillsSection(skills: state.skills),
         const SizedBox(height: 24),
 
-        // Languages
-        LanguagesSection(languages: state.languages),
-        const SizedBox(height: 24),
-
         // Additional Skills
         AdditionalSkillsSection(extraSkills: state.extraSkills),
+        const SizedBox(height: 24),
+        // Languages
+        LanguagesSection(languages: state.languages),
         const SizedBox(height: 24),
 
         // Download CV Button
@@ -127,7 +128,7 @@ class ProfileCard extends StatelessWidget {
               ? () => _launchURL(personalInfo.cvLink)
               : null,
           icon: const Icon(Icons.download),
-          label: const Text('تحميل السيرة الذاتية'),
+          label: Text(S.of(context).download_cv),
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
             shape: RoundedRectangleBorder(
@@ -171,7 +172,7 @@ class SocialIcons extends StatelessWidget {
       children: socialLinks.map((socialLink) {
         return IconButton(
           onPressed: () => _launchURL(socialLink.url),
-          icon: Icon(_getSocialIcon(socialLink.platform)),
+          icon: Icon(_getSocialIcon(context, socialLink.platform)),
           color: Theme.of(context).colorScheme.primary,
           tooltip: socialLink.platform,
         );
@@ -179,7 +180,7 @@ class SocialIcons extends StatelessWidget {
     );
   }
 
-  IconData _getSocialIcon(String platform) {
+  IconData _getSocialIcon(BuildContext context, String platform) {
     switch (platform.toLowerCase()) {
       case 'github':
         return Icons.code;
@@ -223,7 +224,7 @@ class PersonalInfo extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'معلومات عني',
+          S.of(context).about_me,
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
@@ -232,22 +233,22 @@ class PersonalInfo extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         if (personalInfo.age.isNotEmpty)
-          _buildInfoRow('العمر', '${personalInfo.age} سنة'),
+          _buildInfoRow(S.of(context).age, '${personalInfo.age} '),
         if (personalInfo.age.isNotEmpty && personalInfo.freelance.isNotEmpty)
           const SizedBox(height: 8),
         if (personalInfo.freelance.isNotEmpty)
-          _buildInfoRow('الحالة', personalInfo.freelance),
+          _buildInfoRow(S.of(context).freelance, personalInfo.freelance),
         if (personalInfo.address.isNotEmpty) ...[
           const SizedBox(height: 8),
-          _buildInfoRow('العنوان', personalInfo.address),
+          _buildInfoRow(S.of(context).address, personalInfo.address),
         ],
         if (personalInfo.email.isNotEmpty) ...[
           const SizedBox(height: 8),
-          _buildInfoRow('البريد الإلكتروني', personalInfo.email),
+          _buildInfoRow(S.of(context).email, personalInfo.email),
         ],
         if (personalInfo.phoneNumber.isNotEmpty) ...[
           const SizedBox(height: 8),
-          _buildInfoRow('رقم الهاتف', personalInfo.phoneNumber),
+          _buildInfoRow(S.of(context).phoneNumber, personalInfo.phoneNumber),
         ],
       ],
     );
@@ -285,7 +286,7 @@ class SkillsSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'المهارات',
+          S.of(context).skills_title,
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
@@ -336,7 +337,7 @@ class LanguagesSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'اللغات',
+          S.of(context).languages_title,
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
@@ -387,7 +388,7 @@ class AdditionalSkillsSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'مهارات إضافية',
+          S.of(context).extra_skills_title,
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,

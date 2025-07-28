@@ -110,6 +110,16 @@ class S {
     );
   }
 
+  /// `About Me`
+  String get about_me {
+    return Intl.message(
+      'About Me',
+      name: 'about_me',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Age`
   String get age {
     return Intl.message(
@@ -155,6 +165,26 @@ class S {
     return Intl.message(
       'Address',
       name: 'address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone Number`
+  String get phoneNumber {
+    return Intl.message(
+      'Phone Number',
+      name: 'phoneNumber',
       desc: '',
       args: [],
     );
@@ -330,6 +360,46 @@ class S {
     );
   }
 
+  /// `Contact Me`
+  String get contact_title {
+    return Intl.message(
+      'Contact Me',
+      name: 'contact_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Facebook`
+  String get facebook {
+    return Intl.message(
+      'Facebook',
+      name: 'facebook',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `LinkedIn`
+  String get linkedin {
+    return Intl.message(
+      'LinkedIn',
+      name: 'linkedin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `GitHub`
+  String get github {
+    return Intl.message(
+      'GitHub',
+      name: 'github',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Hello World`
   String get some_text {
     return Intl.message(
@@ -345,6 +415,56 @@ class S {
     return Intl.message(
       'Download CV',
       name: 'download_cv',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preview Pictures`
+  String get previewPictures {
+    return Intl.message(
+      'Preview Pictures',
+      name: 'previewPictures',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `preview Project`
+  String get previewProject {
+    return Intl.message(
+      'preview Project',
+      name: 'previewProject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description :`
+  String get descriptionProject {
+    return Intl.message(
+      'Description :',
+      name: 'descriptionProject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `close`
+  String get close {
+    return Intl.message(
+      'close',
+      name: 'close',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Links :`
+  String get links {
+    return Intl.message(
+      'Links :',
+      name: 'links',
       desc: '',
       args: [],
     );

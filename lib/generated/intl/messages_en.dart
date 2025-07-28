@@ -22,14 +22,20 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "about_me": MessageLookupByLibrary.simpleMessage("About Me"),
         "address": MessageLookupByLibrary.simpleMessage("Address"),
         "address_value":
             MessageLookupByLibrary.simpleMessage("El-Mansoura, Egypt"),
         "age": MessageLookupByLibrary.simpleMessage("Age"),
         "age_value": MessageLookupByLibrary.simpleMessage("27"),
+        "close": MessageLookupByLibrary.simpleMessage("close"),
+        "contact_title": MessageLookupByLibrary.simpleMessage("Contact Me"),
         "description": MessageLookupByLibrary.simpleMessage(
             "I am a Flutter developer, creating interactive and effective user interfaces. I combine creativity and programming to build beautiful and fast applications that work on multiple platforms like iOS and Android, using the Flutter framework. I focus on using Dart, and I love turning ideas into real applications with high performance and attractive designs. I always strive to deliver an excellent user experience, ensuring that the applications I design run smoothly on all devices."),
+        "descriptionProject":
+            MessageLookupByLibrary.simpleMessage("Description :"),
         "download_cv": MessageLookupByLibrary.simpleMessage("Download CV"),
+        "email": MessageLookupByLibrary.simpleMessage("Email"),
         "extra_skill_css": MessageLookupByLibrary.simpleMessage("CSS"),
         "extra_skill_git": MessageLookupByLibrary.simpleMessage("Git"),
         "extra_skill_html": MessageLookupByLibrary.simpleMessage("HTML"),
@@ -37,15 +43,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "extra_skill_python": MessageLookupByLibrary.simpleMessage("Python"),
         "extra_skills_title":
             MessageLookupByLibrary.simpleMessage("Extra Skills"),
+        "facebook": MessageLookupByLibrary.simpleMessage("Facebook"),
         "freelance": MessageLookupByLibrary.simpleMessage("Freelance"),
         "freelance_value": MessageLookupByLibrary.simpleMessage("Available"),
+        "github": MessageLookupByLibrary.simpleMessage("GitHub"),
         "hire_me": MessageLookupByLibrary.simpleMessage("Hire Me"),
         "job_title": MessageLookupByLibrary.simpleMessage("Flutter Developer"),
         "language_arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
         "language_english": MessageLookupByLibrary.simpleMessage("English"),
         "languages_title": MessageLookupByLibrary.simpleMessage("Languages"),
+        "linkedin": MessageLookupByLibrary.simpleMessage("LinkedIn"),
+        "links": MessageLookupByLibrary.simpleMessage("Links :"),
         "my_work": MessageLookupByLibrary.simpleMessage("My Work"),
         "name": MessageLookupByLibrary.simpleMessage("Abdallah Tolba"),
+        "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
+        "previewPictures":
+            MessageLookupByLibrary.simpleMessage("Preview Pictures"),
+        "previewProject":
+            MessageLookupByLibrary.simpleMessage("preview Project"),
         "skill_dart": MessageLookupByLibrary.simpleMessage("Dart"),
         "skill_flutter": MessageLookupByLibrary.simpleMessage("Flutter"),
         "skill_flutter_packages":

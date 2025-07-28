@@ -1,5 +1,6 @@
 // contact_card.dart
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/generated/l10n.dart';
 
 class ContactCard extends StatelessWidget {
   const ContactCard({super.key});
@@ -14,7 +15,7 @@ class ContactCard extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              'تواصل معي',
+              S.of(context).contact_title,
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -29,7 +30,7 @@ class ContactCard extends StatelessWidget {
               children: [
                 ContactIconButton(
                   icon: Icons.email,
-                  label: 'البريد الإلكتروني',
+                  label: S.of(context).email,
                   color: Colors.red,
                   onPressed: () {
                     // Email functionality
@@ -37,7 +38,7 @@ class ContactCard extends StatelessWidget {
                 ),
                 ContactIconButton(
                   icon: Icons.phone,
-                  label: 'الهاتف',
+                  label: S.of(context).phoneNumber,
                   color: Colors.green,
                   onPressed: () {
                     // Phone functionality
@@ -46,7 +47,7 @@ class ContactCard extends StatelessWidget {
 
                 ContactIconButton(
                   icon: Icons.facebook,
-                  label: 'فيسبوك',
+                  label: S.of(context).facebook,
                   color: Colors.indigo,
                   onPressed: () {
                     // Facebook functionality
@@ -54,7 +55,7 @@ class ContactCard extends StatelessWidget {
                 ),
                 ContactIconButton(
                   icon: Icons.work,
-                  label: 'لينكد إن',
+                  label: S.of(context).linkedin,
                   color: Colors.blueAccent,
                   onPressed: () {
                     // LinkedIn functionality

@@ -1,7 +1,6 @@
-
-
 // custom_app_bar.dart
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/generated/l10n.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback? onThemeToggle;
@@ -18,19 +17,18 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text(
-        'My Portfolio',
-        style: TextStyle(
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-        ),
+      title: Text(
+        S.of(context).title,
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
       ),
       leading: onProfileTap != null
           ? IconButton(
               onPressed: onProfileTap,
               icon: CircleAvatar(
                 radius: 16,
-                backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                backgroundColor: Theme.of(
+                  context,
+                ).colorScheme.primary.withOpacity(0.1),
                 child: Icon(
                   Icons.person,
                   size: 18,

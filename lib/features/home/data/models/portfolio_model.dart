@@ -14,7 +14,7 @@ class PortfolioModel {
   final List<SocialLinksItem> socialLinks;
   final List<String> skills;
   final List<String> extraSkills;
-  final List<Language> languages;
+  final List<String> languages;
   final List<WorkItemModel> workItems;
 
   PortfolioModel({
@@ -66,9 +66,10 @@ class PortfolioModel {
           [],
       languages:
           (json['languages'] as List<dynamic>?)
-              ?.map((e) => Language.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => e.toString())
               .toList() ??
           [],
+
       workItems:
           (json['workItems'] as List<dynamic>?)
               ?.map((e) => WorkItemModel.fromJson(e as Map<String, dynamic>))
@@ -93,7 +94,7 @@ class PortfolioModel {
       'socialLinks': socialLinks.map((e) => e.toJson()).toList(),
       'skills': skills,
       'extraSkills': extraSkills,
-      'languages': languages.map((e) => e.toJson()).toList(),
+      'languages': languages,
       'workItems': workItems.map((e) => e.toJson()).toList(),
     };
   }
@@ -104,7 +105,11 @@ class SocialLinksItem {
   final String url;
   final String icon;
 
-  SocialLinksItem({required this.platform, required this.url, required this.icon});
+  SocialLinksItem({
+    required this.platform,
+    required this.url,
+    required this.icon,
+  });
 
   factory SocialLinksItem.fromJson(Map<String, dynamic> json) {
     return SocialLinksItem(

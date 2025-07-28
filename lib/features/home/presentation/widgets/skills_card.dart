@@ -1,7 +1,7 @@
-
 // skills_card.dart - Fixed Version with Fallback Skills
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_portfolio/generated/l10n.dart';
 import '../../../../core/utils/responsive_utils.dart';
 import 'package:my_portfolio/features/home/presentation/controller/cubit/portfolio_cubit.dart';
 import 'package:my_portfolio/features/home/presentation/controller/cubit/portfolio_state.dart';
@@ -134,7 +134,7 @@ class SkillsCard extends StatelessWidget {
           children: [
             Center(
               child: Text(
-                'مهاراتي',
+                S.of(context).skills_title,
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
@@ -176,8 +176,13 @@ class SkillsCard extends StatelessWidget {
                 }
 
                 // Show skills if available, otherwise show default skills
-                List<String> skillsToShow = skills.isNotEmpty ? skills : getDefaultSkills();
-                return SkillsGrid(skills: skillsToShow, isDefault: skills.isEmpty);
+                List<String> skillsToShow = skills.isNotEmpty
+                    ? skills
+                    : getDefaultSkills();
+                return SkillsGrid(
+                  skills: skillsToShow,
+                  isDefault: skills.isEmpty,
+                );
               },
             ),
           ],
@@ -211,7 +216,9 @@ class SkillsCard extends StatelessWidget {
                   width: 28,
                   height: 28,
                   decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.primary.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(4),
                   ),
                 ),
@@ -225,7 +232,9 @@ class SkillsCard extends StatelessWidget {
                         height: 12,
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.onSurface.withOpacity(0.1),
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.onSurface.withOpacity(0.1),
                           borderRadius: BorderRadius.circular(2),
                         ),
                       ),
@@ -234,7 +243,9 @@ class SkillsCard extends StatelessWidget {
                         height: 2,
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.primary.withOpacity(0.2),
                           borderRadius: BorderRadius.circular(1),
                         ),
                       ),
@@ -252,11 +263,7 @@ class SkillsCard extends StatelessWidget {
   Widget _buildErrorContent(BuildContext context, VoidCallback onRetry) {
     return Column(
       children: [
-        Icon(
-          Icons.error_outline,
-          size: 64,
-          color: Colors.red.withOpacity(0.7),
-        ),
+        Icon(Icons.error_outline, size: 64, color: Colors.red.withOpacity(0.7)),
         const SizedBox(height: 16),
         Text(
           'فشل في تحميل المهارات',
@@ -283,7 +290,10 @@ class SkillsCard extends StatelessWidget {
               icon: const Icon(Icons.refresh, size: 16),
               label: const Text('إعادة المحاولة'),
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
               ),
             ),
             const SizedBox(width: 12),
@@ -306,12 +316,8 @@ class SkillsCard extends StatelessWidget {
 class SkillsGrid extends StatelessWidget {
   final List<String> skills;
   final bool isDefault;
-  
-  const SkillsGrid({
-    super.key, 
-    required this.skills,
-    this.isDefault = false,
-  });
+
+  const SkillsGrid({super.key, required this.skills, this.isDefault = false});
 
   @override
   Widget build(BuildContext context) {
@@ -352,7 +358,7 @@ class SkillsGrid extends StatelessWidget {
               ],
             ),
           ),
-        
+
         GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),

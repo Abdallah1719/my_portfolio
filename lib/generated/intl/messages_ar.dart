@@ -22,14 +22,19 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "about_me": MessageLookupByLibrary.simpleMessage("معلومات عنى"),
         "address": MessageLookupByLibrary.simpleMessage("العنوان"),
         "address_value": MessageLookupByLibrary.simpleMessage("المنصورة، مصر"),
         "age": MessageLookupByLibrary.simpleMessage("العمر"),
         "age_value": MessageLookupByLibrary.simpleMessage("27"),
+        "close": MessageLookupByLibrary.simpleMessage("إغلاق"),
+        "contact_title": MessageLookupByLibrary.simpleMessage("تواصل معي"),
         "description": MessageLookupByLibrary.simpleMessage(
             " أنا مطور تطبيقات Flutter ،  أقوم بإنشاء واجهات مستخدم تفاعلية وفعّالة،  أجمع بين الإبداع والبرمجة لبناء تطبيقات جميلة وسريعة تعمل على منصات متعددة مثل iOS وAndroid ، باستخدام إطار عمل Flutter ، مع التركيز على أستخدم لغة Dart  ،  أحب تحويل الأفكار إلى تطبيقات واقعية بأداء عالٍ وتصميم جذاب، وأحرص دائمًا على تقديم تجربة مستخدم ممتازة. حيث تعمل التطبيقات التي أصممها بسلاسة على جميع الأجهزة ."),
+        "descriptionProject": MessageLookupByLibrary.simpleMessage(": الوصف"),
         "download_cv":
             MessageLookupByLibrary.simpleMessage("تحميل السيرة الذاتية"),
+        "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
         "extra_skill_css": MessageLookupByLibrary.simpleMessage("CSS"),
         "extra_skill_git": MessageLookupByLibrary.simpleMessage("Git"),
         "extra_skill_html": MessageLookupByLibrary.simpleMessage("HTML"),
@@ -37,15 +42,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "extra_skill_python": MessageLookupByLibrary.simpleMessage("Python"),
         "extra_skills_title":
             MessageLookupByLibrary.simpleMessage("مهارات إضافية"),
+        "facebook": MessageLookupByLibrary.simpleMessage("فيسبوك"),
         "freelance": MessageLookupByLibrary.simpleMessage("العمل الحر"),
         "freelance_value": MessageLookupByLibrary.simpleMessage("متاح"),
+        "github": MessageLookupByLibrary.simpleMessage("GitHub"),
         "hire_me": MessageLookupByLibrary.simpleMessage("وظفني"),
         "job_title": MessageLookupByLibrary.simpleMessage("مطور Flutter"),
         "language_arabic": MessageLookupByLibrary.simpleMessage("العربية"),
         "language_english": MessageLookupByLibrary.simpleMessage("الإنجليزية"),
         "languages_title": MessageLookupByLibrary.simpleMessage("اللغات"),
+        "linkedin": MessageLookupByLibrary.simpleMessage("لينكدإن"),
+        "links": MessageLookupByLibrary.simpleMessage(": الروابط"),
         "my_work": MessageLookupByLibrary.simpleMessage("أعمالي"),
         "name": MessageLookupByLibrary.simpleMessage("عبدالله طلبة"),
+        "phoneNumber": MessageLookupByLibrary.simpleMessage(" رقم الهاتف"),
+        "previewPictures": MessageLookupByLibrary.simpleMessage("معاينة الصور"),
+        "previewProject":
+            MessageLookupByLibrary.simpleMessage("معاينة المشروع"),
         "skill_dart": MessageLookupByLibrary.simpleMessage("Dart"),
         "skill_flutter": MessageLookupByLibrary.simpleMessage("Flutter"),
         "skill_flutter_packages":
