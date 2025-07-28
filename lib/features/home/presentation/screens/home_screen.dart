@@ -6,7 +6,7 @@ import 'package:my_portfolio/features/home/presentation/widgets/contact_card.dar
 import 'package:my_portfolio/features/home/presentation/widgets/custom_app_bar.dart';
 import 'package:my_portfolio/features/home/presentation/widgets/profile_card.dart';
 import 'package:my_portfolio/features/home/presentation/widgets/project_card.dart';
-import 'package:my_portfolio/features/home/presentation/widgets/responsive_utils.dart';
+import 'package:my_portfolio/core/utils/responsive_utils.dart';
 import 'package:my_portfolio/features/home/presentation/widgets/skills_card.dart';
 import 'package:my_portfolio/features/home/presentation/widgets/summary_card.dart';
 import 'package:my_portfolio/l10n/cubit/local_cubit.dart';

@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:my_portfolio/core/api/api_constances.dart';
-import 'package:my_portfolio/core/api/api_interceptors.dart';
 import 'package:my_portfolio/core/api/api_methods.dart';
 import 'package:my_portfolio/core/error/exception.dart';
 

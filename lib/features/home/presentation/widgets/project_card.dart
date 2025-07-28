@@ -1,7 +1,8 @@
 // project_card.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'responsive_utils.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '../../../../core/utils/responsive_utils.dart';
 import 'package:my_portfolio/features/home/data/models/portfolio_model.dart';
 import 'package:my_portfolio/features/home/presentation/controller/cubit/portfolio_cubit.dart';
 import 'package:my_portfolio/features/home/presentation/controller/cubit/portfolio_state.dart';
@@ -291,12 +292,14 @@ class ProjectCard extends StatelessWidget {
     );
   }
 
-  void _launchURL(String url) {
-    // Here you would use url_launcher package to open the URL
-    // For now, we'll just print it
-    print('Opening URL: $url');
-    // TODO: Implement url_launcher
-    // launchUrl(Uri.parse(url));
+  void _launchURL(String url) async {
+    final fullUrl = url.startsWith('http') ? url : 'https://$url';
+    final uri = Uri.tryParse(fullUrl);
+    if (uri != null && await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } else {
+      print('لا يمكن فتح الرابط: $url');
+    }
   }
 
   void _showImagePreview(BuildContext context, String imageUrl) {

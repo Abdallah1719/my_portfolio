@@ -161,7 +161,10 @@ class SummaryCard extends StatelessWidget {
       height: imageHeight,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+        color: Color(
+          0xFFFFFFFF,
+        ), // استخدام لون رمادي فاتح بدلاً من primary.withOpacity(0.1);
+        //  Theme.of(context).colorScheme.primary.withOpacity(0.1),
         border: Border.all(
           color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
           width: 1,
