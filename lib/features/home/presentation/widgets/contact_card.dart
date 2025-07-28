@@ -8,9 +8,7 @@ class ContactCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(
         padding: const EdgeInsets.all(24),
         child: Column(
@@ -24,7 +22,7 @@ class ContactCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24),
-            
+
             // Contact Icons Row
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -45,14 +43,7 @@ class ContactCard extends StatelessWidget {
                     // Phone functionality
                   },
                 ),
-                ContactIconButton(
-                  icon: Icons.link,
-                  label: 'موقع الويب',
-                  color: Colors.blue,
-                  onPressed: () {
-                    // Website functionality
-                  },
-                ),
+
                 ContactIconButton(
                   icon: Icons.facebook,
                   label: 'فيسبوك',
@@ -114,10 +105,7 @@ class ContactIconButton extends StatelessWidget {
         const SizedBox(height: 8),
         Text(
           label,
-          style: const TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w500,
-          ),
+          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
           textAlign: TextAlign.center,
         ),
       ],

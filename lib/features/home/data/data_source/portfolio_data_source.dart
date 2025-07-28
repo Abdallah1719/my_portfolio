@@ -1,10 +1,7 @@
 import 'dart:convert';
-import 'dart:developer';
-
 import 'package:my_portfolio/core/api/api_constances.dart';
 import 'package:my_portfolio/core/api/api_methods.dart';
 import 'package:my_portfolio/features/home/data/models/portfolio_model.dart';
-
 
 abstract class PortfolioRemoteDataSource {
   Future<PortfolioModel> getPersonalInfo();
@@ -39,8 +36,9 @@ class PortfolioRemoteDataSourceImpl extends PortfolioRemoteDataSource {
     final response = await api.get(ApiConstances.baseUrl);
     final Map<String, dynamic> data = json.decode(response);
     final List<dynamic> dataList = data['languages'];
-    final List<String> languages = dataList.map((item) => item.toString()).toList();
-    print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Languages List: $languages');
+    final List<String> languages = dataList
+        .map((item) => item.toString())
+        .toList();
     return languages;
   }
 
@@ -49,15 +47,15 @@ class PortfolioRemoteDataSourceImpl extends PortfolioRemoteDataSource {
     final response = await api.get(ApiConstances.baseUrl);
     final Map<String, dynamic> data = json.decode(response);
     final List<dynamic> dataList = data['skills'];
-    final List<String> skills = dataList.map((item) => item.toString()).toList();
-    print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Skills List: $skills');
+    final List<String> skills = dataList
+        .map((item) => item.toString())
+        .toList();
     return skills;
   }
 
   @override
   Future<List<SocialLinksItem>> getSocialLinks() async {
     final response = await api.get(ApiConstances.baseUrl);
-    log('Response: $response');
     final Map<String, dynamic> data = json.decode(response);
     final List<dynamic> dataList = data['socialLinks'];
     return dataList.map((item) => SocialLinksItem.fromJson(item)).toList();
@@ -66,16 +64,14 @@ class PortfolioRemoteDataSourceImpl extends PortfolioRemoteDataSource {
   @override
   Future<List<WorkItemModel>> getWorkItems() async {
     final response = await api.get(ApiConstances.baseUrl);
-    log('Response: $response');
     final Map<String, dynamic> data = json.decode(response);
-    print('Decoded data: $data');
-    if (data['workitems'] == null) {
-      print('workitems key not found or is null!');
+    if (data['workItems'] == null) {
       throw Exception('No workitems found');
     }
-    final List<dynamic> dataList = data['workitems'];
-    final List<WorkItemModel> workItems = dataList.map((item) => WorkItemModel.fromJson(item)).toList();
-    print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Work Items List: $workItems');
+    final List<dynamic> dataList = data['workItems'];
+    final List<WorkItemModel> workItems = dataList
+        .map((item) => WorkItemModel.fromJson(item))
+        .toList();
     return workItems;
   }
 }

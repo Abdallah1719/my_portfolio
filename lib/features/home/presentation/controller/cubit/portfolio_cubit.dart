@@ -5,7 +5,7 @@ import 'package:my_portfolio/features/home/presentation/controller/cubit/portfol
 
 class PortfolioCubit extends Cubit<PortfolioState> {
   final PortfolioRepository repository;
-  
+
   PortfolioCubit(this.repository) : super(PortfolioInitial());
 
   Future<void> getPersonalInfo() async {
@@ -65,7 +65,7 @@ class PortfolioCubit extends Cubit<PortfolioState> {
   // Method to load all data at once
   Future<void> loadAllPortfolioData() async {
     emit(PortfolioLoading());
-    
+
     try {
       final results = await Future.wait([
         repository.getPersonalInfo(),
@@ -78,28 +78,39 @@ class PortfolioCubit extends Cubit<PortfolioState> {
 
       // Check if any request failed
       for (final result in results) {
-        result.fold(
-          (error) => throw Exception(error),
-          (data) => null,
-        );
+        result.fold((error) => throw Exception(error), (data) => null);
       }
 
       // All requests succeeded, extract data
-      final personalInfo = results[0].getOrElse(() => throw Exception('Personal info failed'));
-      final extraSkills = results[1].getOrElse(() => throw Exception('Extra skills failed'));
-      final languages = results[2].getOrElse(() => throw Exception('Languages failed'));
-      final skills = results[3].getOrElse(() => throw Exception('Skills failed'));
-      final socialLinks = results[4].getOrElse(() => throw Exception('Social links failed'));
-      final workItems = results[5].getOrElse(() => throw Exception('Work items failed'));
+      final personalInfo = results[0].getOrElse(
+        () => throw Exception('Personal info failed'),
+      );
+      final extraSkills = results[1].getOrElse(
+        () => throw Exception('Extra skills failed'),
+      );
+      final languages = results[2].getOrElse(
+        () => throw Exception('Languages failed'),
+      );
+      final skills = results[3].getOrElse(
+        () => throw Exception('Skills failed'),
+      );
+      final socialLinks = results[4].getOrElse(
+        () => throw Exception('Social links failed'),
+      );
+      final workItems = results[5].getOrElse(
+        () => throw Exception('Work items failed'),
+      );
 
-      emit(PortfolioAllDataLoaded(
-        personalInfo: personalInfo as PortfolioModel,
-        extraSkills: extraSkills as List<String>,
-        languages: languages as List<String>,
-        skills: skills as List<String>,
-        socialLinks: socialLinks as List<SocialLinksItem>,
-        workItems: workItems as List<WorkItemModel>,
-      ));
+      emit(
+        PortfolioAllDataLoaded(
+          personalInfo: personalInfo as PortfolioModel,
+          extraSkills: extraSkills as List<String>,
+          languages: languages as List<String>,
+          skills: skills as List<String>,
+          socialLinks: socialLinks as List<SocialLinksItem>,
+          workItems: workItems as List<WorkItemModel>,
+        ),
+      );
     } catch (e) {
       emit(PortfolioError(e.toString()));
     }

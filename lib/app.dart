@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_portfolio/core/services/service_locator.dart';
 import 'package:my_portfolio/core/theme/cubit/theme_cubit.dart';
+import 'package:my_portfolio/features/home/presentation/controller/cubit/portfolio_cubit.dart';
 import 'package:my_portfolio/features/home/presentation/screens/home_screen.dart';
 import 'package:my_portfolio/generated/l10n.dart';
 import 'package:my_portfolio/l10n/cubit/local_cubit.dart';
@@ -15,6 +16,9 @@ class App extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => sl<LocaleCubit>()..loadSavedLocale()),
         BlocProvider(create: (context) => sl<ThemeCubit>()..loadSavedTheme()),
+        BlocProvider(
+          create: (context) => sl<PortfolioCubit>()..loadAllPortfolioData(),
+        ),
       ],
       child: BlocBuilder<LocaleCubit, String>(
         builder: (context, locale) {
