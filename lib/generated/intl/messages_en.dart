@@ -22,9 +22,43 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-    "appTitle": MessageLookupByLibrary.simpleMessage("My Portfolio"),
-    "welcomeMessage": MessageLookupByLibrary.simpleMessage(
-      "Welcome to My Portfolio",
-    ),
-  };
+        "address": MessageLookupByLibrary.simpleMessage("Address"),
+        "address_value":
+            MessageLookupByLibrary.simpleMessage("El-Mansoura, Egypt"),
+        "age": MessageLookupByLibrary.simpleMessage("Age"),
+        "age_value": MessageLookupByLibrary.simpleMessage("27"),
+        "description": MessageLookupByLibrary.simpleMessage(
+            "I am a Flutter developer, creating interactive and effective user interfaces. I combine creativity and programming to build beautiful and fast applications that work on multiple platforms like iOS and Android, using the Flutter framework. I focus on using Dart, and I love turning ideas into real applications with high performance and attractive designs. I always strive to deliver an excellent user experience, ensuring that the applications I design run smoothly on all devices."),
+        "download_cv": MessageLookupByLibrary.simpleMessage("Download CV"),
+        "extra_skill_css": MessageLookupByLibrary.simpleMessage("CSS"),
+        "extra_skill_git": MessageLookupByLibrary.simpleMessage("Git"),
+        "extra_skill_html": MessageLookupByLibrary.simpleMessage("HTML"),
+        "extra_skill_postman": MessageLookupByLibrary.simpleMessage("Postman"),
+        "extra_skill_python": MessageLookupByLibrary.simpleMessage("Python"),
+        "extra_skills_title":
+            MessageLookupByLibrary.simpleMessage("Extra Skills"),
+        "freelance": MessageLookupByLibrary.simpleMessage("Freelance"),
+        "freelance_value": MessageLookupByLibrary.simpleMessage("Available"),
+        "hire_me": MessageLookupByLibrary.simpleMessage("Hire Me"),
+        "job_title": MessageLookupByLibrary.simpleMessage("Flutter Developer"),
+        "language_arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
+        "language_english": MessageLookupByLibrary.simpleMessage("English"),
+        "languages_title": MessageLookupByLibrary.simpleMessage("Languages"),
+        "my_work": MessageLookupByLibrary.simpleMessage("My Work"),
+        "name": MessageLookupByLibrary.simpleMessage("Abdallah Tolba"),
+        "skill_dart": MessageLookupByLibrary.simpleMessage("Dart"),
+        "skill_flutter": MessageLookupByLibrary.simpleMessage("Flutter"),
+        "skill_flutter_packages":
+            MessageLookupByLibrary.simpleMessage("Flutter Packages"),
+        "skill_google_apis":
+            MessageLookupByLibrary.simpleMessage("Google APIs"),
+        "skill_material_design":
+            MessageLookupByLibrary.simpleMessage("Material Design System"),
+        "skill_oop": MessageLookupByLibrary.simpleMessage("OOP"),
+        "skills_title": MessageLookupByLibrary.simpleMessage("Skills"),
+        "some_text": MessageLookupByLibrary.simpleMessage("Hello World"),
+        "test": MessageLookupByLibrary.simpleMessage("test1"),
+        "text": MessageLookupByLibrary.simpleMessage("text1"),
+        "title": MessageLookupByLibrary.simpleMessage("My Portfolio")
+      };
 }

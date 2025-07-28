@@ -7,7 +7,6 @@ import 'package:my_portfolio/features/home/presentation/controller/cubit/portfol
 
 class SummaryCard extends StatelessWidget {
   const SummaryCard({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Card(

@@ -22,7 +22,43 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-    "appTitle": MessageLookupByLibrary.simpleMessage("محفظتى"),
-    "welcomeMessage": MessageLookupByLibrary.simpleMessage("السلام عليكم"),
-  };
+        "address": MessageLookupByLibrary.simpleMessage("العنوان"),
+        "address_value": MessageLookupByLibrary.simpleMessage("المنصورة، مصر"),
+        "age": MessageLookupByLibrary.simpleMessage("العمر"),
+        "age_value": MessageLookupByLibrary.simpleMessage("27"),
+        "description": MessageLookupByLibrary.simpleMessage(
+            " أنا مطور تطبيقات Flutter ،  أقوم بإنشاء واجهات مستخدم تفاعلية وفعّالة،  أجمع بين الإبداع والبرمجة لبناء تطبيقات جميلة وسريعة تعمل على منصات متعددة مثل iOS وAndroid ، باستخدام إطار عمل Flutter ، مع التركيز على أستخدم لغة Dart  ،  أحب تحويل الأفكار إلى تطبيقات واقعية بأداء عالٍ وتصميم جذاب، وأحرص دائمًا على تقديم تجربة مستخدم ممتازة. حيث تعمل التطبيقات التي أصممها بسلاسة على جميع الأجهزة ."),
+        "download_cv":
+            MessageLookupByLibrary.simpleMessage("تحميل السيرة الذاتية"),
+        "extra_skill_css": MessageLookupByLibrary.simpleMessage("CSS"),
+        "extra_skill_git": MessageLookupByLibrary.simpleMessage("Git"),
+        "extra_skill_html": MessageLookupByLibrary.simpleMessage("HTML"),
+        "extra_skill_postman": MessageLookupByLibrary.simpleMessage("Postman"),
+        "extra_skill_python": MessageLookupByLibrary.simpleMessage("Python"),
+        "extra_skills_title":
+            MessageLookupByLibrary.simpleMessage("مهارات إضافية"),
+        "freelance": MessageLookupByLibrary.simpleMessage("العمل الحر"),
+        "freelance_value": MessageLookupByLibrary.simpleMessage("متاح"),
+        "hire_me": MessageLookupByLibrary.simpleMessage("وظفني"),
+        "job_title": MessageLookupByLibrary.simpleMessage("مطور Flutter"),
+        "language_arabic": MessageLookupByLibrary.simpleMessage("العربية"),
+        "language_english": MessageLookupByLibrary.simpleMessage("الإنجليزية"),
+        "languages_title": MessageLookupByLibrary.simpleMessage("اللغات"),
+        "my_work": MessageLookupByLibrary.simpleMessage("أعمالي"),
+        "name": MessageLookupByLibrary.simpleMessage("عبدالله طلبة"),
+        "skill_dart": MessageLookupByLibrary.simpleMessage("Dart"),
+        "skill_flutter": MessageLookupByLibrary.simpleMessage("Flutter"),
+        "skill_flutter_packages":
+            MessageLookupByLibrary.simpleMessage("حزم Flutter"),
+        "skill_google_apis":
+            MessageLookupByLibrary.simpleMessage("واجهات برمجة تطبيقات Google"),
+        "skill_material_design":
+            MessageLookupByLibrary.simpleMessage("نظام تصميم Material"),
+        "skill_oop": MessageLookupByLibrary.simpleMessage("البرمجة الكائنية"),
+        "skills_title": MessageLookupByLibrary.simpleMessage("المهارات"),
+        "some_text": MessageLookupByLibrary.simpleMessage("مرحبًا بالعالم"),
+        "test": MessageLookupByLibrary.simpleMessage("اختبار"),
+        "text": MessageLookupByLibrary.simpleMessage("كلام"),
+        "title": MessageLookupByLibrary.simpleMessage("معرض أعمالي")
+      };
 }
