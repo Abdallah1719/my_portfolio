@@ -1,4 +1,5 @@
-// // skills_card.dart
+
+// // skills_card.dart - Fixed Version
 // import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'responsive_utils.dart';
@@ -84,6 +85,7 @@
 // class SkillsCard extends StatelessWidget {
 //   const SkillsCard({super.key});
 
+//   // @override
 //   @override
 //   Widget build(BuildContext context) {
 //     return Card(
@@ -107,28 +109,126 @@
 //             const SizedBox(height: 24),
 //             BlocBuilder<PortfolioCubit, PortfolioState>(
 //               builder: (context, state) {
+//                 // Handle Loading States
+//                 if (state is PortfolioLoading ||
+//                     state is PortfolioPersonalInfoLoading) {
+//                   return const Center(
+//                     child: Padding(
+//                       padding: EdgeInsets.all(32.0),
+//                       child: CircularProgressIndicator(),
+//                     ),
+//                   );
+//                 }
+
+//                 // Handle Error States
+//                 if (state is PortfolioError) {
+//                   return Center(
+//                     child: Column(
+//                       children: [
+//                         const Icon(
+//                           Icons.error_outline,
+//                           size: 64,
+//                           color: Colors.red,
+//                         ),
+//                         const SizedBox(height: 16),
+//                         Text(
+//                           'حدث خطأ أثناء تحميل المهارات',
+//                           style: TextStyle(
+//                             fontSize: 16,
+//                             color: Theme.of(
+//                               context,
+//                             ).colorScheme.onSurface.withOpacity(0.7),
+//                           ),
+//                         ),
+//                         const SizedBox(height: 16),
+//                         ElevatedButton(
+//                           onPressed: () {
+//                             context
+//                                 .read<PortfolioCubit>()
+//                                 .loadAllPortfolioData();
+//                           },
+//                           child: const Text('إعادة المحاولة'),
+//                         ),
+//                       ],
+//                     ),
+//                   );
+//                 }
+
+//                 if (state is PortfolioPersonalInfoError) {
+//                   return Center(
+//                     child: Column(
+//                       children: [
+//                         const Icon(
+//                           Icons.error_outline,
+//                           size: 64,
+//                           color: Colors.red,
+//                         ),
+//                         const SizedBox(height: 16),
+//                         Text(
+//                           'حدث خطأ أثناء تحميل المهارات',
+//                           style: TextStyle(
+//                             fontSize: 16,
+//                             color: Theme.of(
+//                               context,
+//                             ).colorScheme.onSurface.withOpacity(0.7),
+//                           ),
+//                         ),
+//                         const SizedBox(height: 16),
+//                         ElevatedButton(
+//                           onPressed: () {
+//                             context.read<PortfolioCubit>().getPersonalInfo();
+//                           },
+//                           child: const Text('إعادة المحاولة'),
+//                         ),
+//                       ],
+//                     ),
+//                   );
+//                 }
+
+//                 // Extract skills from different state types
 //                 List<String> skills = [];
-//                 if (state is PortfolioPersonalInfoLoaded) {
+
+//                 if (state is PortfolioAllDataLoaded) {
+//                   skills = state
+//                       .skills; // استخدم الـ skills المنفصلة مش اللي جوه personalInfo
+//                 } else if (state is PortfolioPersonalInfoLoaded) {
 //                   skills = state.personalInfo.skills;
-//                 } else if (state is PortfolioAllDataLoaded) {
-//                   skills = state.personalInfo.skills;
-//                 } else if (state is PortfolioPersonalInfoLoading ||
-//                     state is PortfolioLoading) {
-//                   return const Center(child: CircularProgressIndicator());
-//                 } else if (state is PortfolioPersonalInfoError ||
-//                     state is PortfolioError) {
-//                   return const Center(
-//                     child: Text('حدث خطأ أثناء تحميل المهارات'),
-//                   );
+//                 } else if (state is PortfolioSkillsLoaded) {
+//                   skills = state.skills;
 //                 }
 
-//                 if (skills.isEmpty) {
-//                   return const Center(
-//                     child: Text('لا توجد مهارات متاحة حالياً.'),
-//                   );
+//                 // Show skills if available
+//                 if (skills.isNotEmpty) {
+//                   return SkillsGrid(skills: skills);
 //                 }
 
-//                 return SkillsGrid(skills: skills);
+//                 // Show default message
+//                 return Center(
+//                   child: Padding(
+//                     padding: const EdgeInsets.all(32.0),
+//                     child: Column(
+//                       children: [
+//                         Icon(
+//                           Icons.stars,
+//                           size: 64,
+//                           color: Theme.of(
+//                             context,
+//                           ).colorScheme.primary.withOpacity(0.5),
+//                         ),
+//                         const SizedBox(height: 16),
+//                         Text(
+//                           'لا توجد مهارات متاحة حالياً.',
+//                           style: TextStyle(
+//                             fontSize: 16,
+//                             color: Theme.of(
+//                               context,
+//                             ).colorScheme.onSurface.withOpacity(0.7),
+//                           ),
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                 );
 //               },
 //             ),
 //           ],
@@ -261,7 +361,7 @@
 //     required this.icon,
 //   });
 // }
-// skills_card.dart - Fixed Version
+// skills_card.dart - Fixed Version with Fallback Skills
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'responsive_utils.dart';
@@ -334,6 +434,27 @@ SkillData getSkillData(String name) {
         color: Colors.deepOrange,
         icon: Icons.phone_android,
       );
+    case 'BLoC Pattern':
+      return SkillData(
+        name: name,
+        level: 0.85,
+        color: Colors.cyan,
+        icon: Icons.architecture,
+      );
+    case 'Provider':
+      return SkillData(
+        name: name,
+        level: 0.8,
+        color: Colors.amber,
+        icon: Icons.layers,
+      );
+    case 'GetX':
+      return SkillData(
+        name: name,
+        level: 0.75,
+        color: Colors.lightGreen,
+        icon: Icons.flash_on,
+      );
     default:
       return SkillData(
         name: name,
@@ -344,10 +465,25 @@ SkillData getSkillData(String name) {
   }
 }
 
+// قائمة المهارات الاحتياطية
+List<String> getDefaultSkills() {
+  return [
+    'Flutter',
+    'Dart',
+    'Firebase',
+    'UI/UX Design',
+    'REST APIs',
+    'Git & GitHub',
+    'State Management',
+    'BLoC Pattern',
+    'Provider',
+    'SQLite',
+  ];
+}
+
 class SkillsCard extends StatelessWidget {
   const SkillsCard({super.key});
 
-  // @override
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -374,123 +510,36 @@ class SkillsCard extends StatelessWidget {
                 // Handle Loading States
                 if (state is PortfolioLoading ||
                     state is PortfolioPersonalInfoLoading) {
-                  return const Center(
-                    child: Padding(
-                      padding: EdgeInsets.all(32.0),
-                      child: CircularProgressIndicator(),
-                    ),
-                  );
+                  return _buildLoadingContent(context);
                 }
 
                 // Handle Error States
                 if (state is PortfolioError) {
-                  return Center(
-                    child: Column(
-                      children: [
-                        const Icon(
-                          Icons.error_outline,
-                          size: 64,
-                          color: Colors.red,
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          'حدث خطأ أثناء تحميل المهارات',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Theme.of(
-                              context,
-                            ).colorScheme.onSurface.withOpacity(0.7),
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        ElevatedButton(
-                          onPressed: () {
-                            context
-                                .read<PortfolioCubit>()
-                                .loadAllPortfolioData();
-                          },
-                          child: const Text('إعادة المحاولة'),
-                        ),
-                      ],
-                    ),
-                  );
+                  return _buildErrorContent(context, () {
+                    context.read<PortfolioCubit>().loadAllPortfolioData();
+                  });
                 }
 
                 if (state is PortfolioPersonalInfoError) {
-                  return Center(
-                    child: Column(
-                      children: [
-                        const Icon(
-                          Icons.error_outline,
-                          size: 64,
-                          color: Colors.red,
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          'حدث خطأ أثناء تحميل المهارات',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Theme.of(
-                              context,
-                            ).colorScheme.onSurface.withOpacity(0.7),
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        ElevatedButton(
-                          onPressed: () {
-                            context.read<PortfolioCubit>().getPersonalInfo();
-                          },
-                          child: const Text('إعادة المحاولة'),
-                        ),
-                      ],
-                    ),
-                  );
+                  return _buildErrorContent(context, () {
+                    context.read<PortfolioCubit>().getPersonalInfo();
+                  });
                 }
 
                 // Extract skills from different state types
                 List<String> skills = [];
 
                 if (state is PortfolioAllDataLoaded) {
-                  skills = state
-                      .skills; // استخدم الـ skills المنفصلة مش اللي جوه personalInfo
+                  skills = state.skills;
                 } else if (state is PortfolioPersonalInfoLoaded) {
                   skills = state.personalInfo.skills;
                 } else if (state is PortfolioSkillsLoaded) {
                   skills = state.skills;
                 }
 
-                // Show skills if available
-                if (skills.isNotEmpty) {
-                  return SkillsGrid(skills: skills);
-                }
-
-                // Show default message
-                return Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(32.0),
-                    child: Column(
-                      children: [
-                        Icon(
-                          Icons.stars,
-                          size: 64,
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.primary.withOpacity(0.5),
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          'لا توجد مهارات متاحة حالياً.',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Theme.of(
-                              context,
-                            ).colorScheme.onSurface.withOpacity(0.7),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
+                // Show skills if available, otherwise show default skills
+                List<String> skillsToShow = skills.isNotEmpty ? skills : getDefaultSkills();
+                return SkillsGrid(skills: skillsToShow, isDefault: skills.isEmpty);
               },
             ),
           ],
@@ -498,29 +547,189 @@ class SkillsCard extends StatelessWidget {
       ),
     );
   }
+
+  Widget _buildLoadingContent(BuildContext context) {
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 8,
+        mainAxisSpacing: 8,
+        childAspectRatio: 2.8,
+      ),
+      itemCount: 6, // عرض 6 عناصر تحميل
+      itemBuilder: (context, index) {
+        return Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: Theme.of(context).colorScheme.primary.withOpacity(0.05),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: Row(
+              children: [
+                Container(
+                  width: 28,
+                  height: 28,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: 12,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.onSurface.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(2),
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Container(
+                        height: 2,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(1),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildErrorContent(BuildContext context, VoidCallback onRetry) {
+    return Column(
+      children: [
+        Icon(
+          Icons.error_outline,
+          size: 64,
+          color: Colors.red.withOpacity(0.7),
+        ),
+        const SizedBox(height: 16),
+        Text(
+          'فشل في تحميل المهارات',
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.red,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          'سيتم عرض المهارات الافتراضية',
+          style: TextStyle(
+            fontSize: 14,
+            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+          ),
+        ),
+        const SizedBox(height: 16),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton.icon(
+              onPressed: onRetry,
+              icon: const Icon(Icons.refresh, size: 16),
+              label: const Text('إعادة المحاولة'),
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              ),
+            ),
+            const SizedBox(width: 12),
+            TextButton(
+              onPressed: () {
+                // عرض المهارات الافتراضية مباشرة
+              },
+              child: const Text('عرض المهارات الافتراضية'),
+            ),
+          ],
+        ),
+        const SizedBox(height: 24),
+        // عرض المهارات الافتراضية مباشرة بعد الخطأ
+        SkillsGrid(skills: getDefaultSkills(), isDefault: true),
+      ],
+    );
+  }
 }
 
 class SkillsGrid extends StatelessWidget {
   final List<String> skills;
-  const SkillsGrid({super.key, required this.skills});
+  final bool isDefault;
+  
+  const SkillsGrid({
+    super.key, 
+    required this.skills,
+    this.isDefault = false,
+  });
 
   @override
   Widget build(BuildContext context) {
     final crossAxisCount = _getCrossAxisCount(context);
 
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: crossAxisCount,
-        crossAxisSpacing: 8,
-        mainAxisSpacing: 8,
-        childAspectRatio: 2.8,
-      ),
-      itemCount: skills.length,
-      itemBuilder: (context, index) {
-        return SkillCard(skill: getSkillData(skills[index]));
-      },
+    return Column(
+      children: [
+        // إظهار رسالة إذا كانت المهارات افتراضية
+        if (isDefault)
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(12),
+            margin: const EdgeInsets.only(bottom: 16),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(
+                color: Theme.of(context).colorScheme.secondary.withOpacity(0.3),
+              ),
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.info_outline,
+                  size: 16,
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    'يتم عرض المهارات الافتراضية - لم يتم تحميل البيانات من الخادم',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        
+        GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: crossAxisCount,
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 8,
+            childAspectRatio: 2.8,
+          ),
+          itemCount: skills.length,
+          itemBuilder: (context, index) {
+            return SkillCard(skill: getSkillData(skills[index]));
+          },
+        ),
+      ],
     );
   }
 
