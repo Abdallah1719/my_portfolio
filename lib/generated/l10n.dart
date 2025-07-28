@@ -400,6 +400,16 @@ class S {
     );
   }
 
+  /// `WhatsApp`
+  String get whatsapp {
+    return Intl.message(
+      'WhatsApp',
+      name: 'whatsapp',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Hello World`
   String get some_text {
     return Intl.message(

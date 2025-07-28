@@ -23,7 +23,7 @@ SkillData getSkillData(String name) {
         color: Colors.blueAccent,
         icon: Icons.code,
       );
-    case 'Firebase':
+    case 'Firebase & supabase':
       return SkillData(
         name: name,
         level: 0.8,
@@ -37,21 +37,21 @@ SkillData getSkillData(String name) {
         color: Colors.purple,
         icon: Icons.design_services,
       );
-    case 'REST APIs':
-      return SkillData(
-        name: name,
-        level: 0.8,
-        color: Colors.green,
-        icon: Icons.api,
-      );
-    case 'Git & GitHub':
+    case 'API integration (JSON, REST)':
       return SkillData(
         name: name,
         level: 0.85,
+        color: Colors.green,
+        icon: Icons.api,
+      );
+    case 'Version Control (Git)':
+      return SkillData(
+        name: name,
+        level: 0.95,
         color: Colors.red,
         icon: Icons.source,
       );
-    case 'State Management':
+    case 'State Management (Bloc,Provider,Riverpod)':
       return SkillData(
         name: name,
         level: 0.85,
@@ -65,11 +65,11 @@ SkillData getSkillData(String name) {
         color: Colors.indigo,
         icon: Icons.storage,
       );
-    case 'Native Development':
+    case 'Solid Principles':
       return SkillData(
         name: name,
-        level: 0.7,
-        color: Colors.deepOrange,
+        level: 0.75,
+        color: Colors.orange,
         icon: Icons.phone_android,
       );
     case 'BLoC Pattern':
@@ -79,7 +79,7 @@ SkillData getSkillData(String name) {
         color: Colors.cyan,
         icon: Icons.architecture,
       );
-    case 'Provider':
+    case 'Clean Architecture,MVVM,MVC':
       return SkillData(
         name: name,
         level: 0.8,
@@ -96,7 +96,7 @@ SkillData getSkillData(String name) {
     default:
       return SkillData(
         name: name,
-        level: 0.8,
+        level: 0.70,
         color: Colors.blueGrey,
         icon: Icons.star,
       );

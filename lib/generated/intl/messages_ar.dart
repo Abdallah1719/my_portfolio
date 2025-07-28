@@ -72,6 +72,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "some_text": MessageLookupByLibrary.simpleMessage("مرحبًا بالعالم"),
         "test": MessageLookupByLibrary.simpleMessage("اختبار"),
         "text": MessageLookupByLibrary.simpleMessage("كلام"),
-        "title": MessageLookupByLibrary.simpleMessage("معرض أعمالي")
+        "title": MessageLookupByLibrary.simpleMessage("معرض أعمالي"),
+        "whatsapp": MessageLookupByLibrary.simpleMessage("واتساب")
       };
 }

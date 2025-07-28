@@ -188,6 +188,8 @@ class SocialIcons extends StatelessWidget {
         return Icons.work;
       case 'email':
         return Icons.email;
+      case 'whatsapp':
+        return Icons.chat;
       case 'facebook':
         return Icons.facebook;
       case 'twitter':
