@@ -60,7 +60,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     ),
                   ],
                 ),
-                child: Image.network(
+                child: Image.asset(
                   'asstes/photo_splach.jpg',
                   width: 200,
                   height: 200,
