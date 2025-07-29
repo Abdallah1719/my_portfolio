@@ -4,6 +4,7 @@ import 'package:my_portfolio/core/services/service_locator.dart';
 import 'package:my_portfolio/core/theme/cubit/theme_cubit.dart';
 import 'package:my_portfolio/features/home/presentation/controller/cubit/portfolio_cubit.dart';
 import 'package:my_portfolio/features/home/presentation/screens/home_screen.dart';
+import 'package:my_portfolio/features/splash/splash_screen.dart';
 import 'package:my_portfolio/generated/l10n.dart';
 import 'package:my_portfolio/l10n/cubit/local_cubit.dart';
 
@@ -31,7 +32,7 @@ class App extends StatelessWidget {
                 locale: Locale(locale),
                 theme: context.watch<ThemeCubit>().currentTheme(),
                 title: 'Flutter Demo',
-                home: PortfolioScreen(),
+                home: SplashScreen(),
               );
             },
           );

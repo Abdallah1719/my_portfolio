@@ -11,6 +11,7 @@ class PortfolioModel {
   final String profilePicture;
   final String summaryImage;
   final String cvLink;
+  final String splashImage;
   final List<SocialLinksItem> socialLinks;
   final List<String> skills;
   final List<String> extraSkills;
@@ -29,6 +30,7 @@ class PortfolioModel {
     required this.profilePicture,
     required this.summaryImage,
     required this.cvLink,
+    required this.splashImage,
     required this.socialLinks,
     required this.skills,
     required this.extraSkills,
@@ -49,6 +51,7 @@ class PortfolioModel {
       profilePicture: json['profilePicture'] ?? '',
       summaryImage: json['summaryImage'] ?? '',
       cvLink: json['cvLink'] ?? '',
+      splashImage: json['splashScreenImage'] ?? '',
       socialLinks:
           (json['socialLinks'] as List<dynamic>?)
               ?.map((e) => SocialLinksItem.fromJson(e as Map<String, dynamic>))
@@ -91,6 +94,7 @@ class PortfolioModel {
       'profilePicture': profilePicture,
       'summaryImage': summaryImage,
       'cvLink': cvLink,
+      'splashScreenImage': splashImage,
       'socialLinks': socialLinks.map((e) => e.toJson()).toList(),
       'skills': skills,
       'extraSkills': extraSkills,

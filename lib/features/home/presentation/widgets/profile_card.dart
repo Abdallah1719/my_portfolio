@@ -71,7 +71,8 @@ class ProfileCard extends StatelessWidget {
           // backgroundColor: Theme.of(
           //   context,
           // ).colorScheme.primary.withOpacity(0.1),
-          backgroundImage: personalInfo.profilePicture.isNotEmpty
+          backgroundImage: 
+          personalInfo.profilePicture.isNotEmpty
               ? NetworkImage(personalInfo.profilePicture)
               : null,
           child: personalInfo.profilePicture.isEmpty
