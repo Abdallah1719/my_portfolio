@@ -30,7 +30,7 @@ class App extends StatelessWidget {
                 supportedLocales: S.delegate.supportedLocales,
                 locale: Locale(locale),
                 theme: context.watch<ThemeCubit>().currentTheme(),
-                title: 'Flutter Demo',
+                title: 'My Portfolio',
                 home: SplashScreen(),
               );
             },
